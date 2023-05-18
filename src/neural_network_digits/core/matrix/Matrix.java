@@ -17,16 +17,13 @@ public class Matrix{
 	private double[] a;
 
 	public Matrix(int rows, int cols) {
-
 		this.rows = rows;
 		this.cols = cols;
-
 		a = new double[rows * cols];
 	}
 	
 	public Matrix(int rows, int cols, MatrixFill matrixFill) {
 		this(rows, cols);
-
 		for (int i = 0; i < a.length; i++) {
 			switch(matrixFill) {
 				case GAUSSIAN:
@@ -39,28 +36,17 @@ public class Matrix{
 	}
 	
 	public Matrix(int rows, int cols, double[] values) {
-		
 		this.rows = rows;
 		this.cols = cols;
-		
 		Matrix tmp = new Matrix(cols, rows);
 		tmp.a = values;
 		Matrix transposed = tmp.transpose();
 		a = transposed.a;	
 	}
 	
-	public int getRows() {
-		return rows;
-	}
-	
-	public int getCols() {
-		return cols;
-	}
-	
 	public Matrix map(MatrixProducer producer) {
 		Matrix result = new Matrix(rows, cols);
 		int index = 0;
-		
 		for (int row = 0; row < rows; ++row) {
 			for (int col = 0; col < cols; ++col) {
 
@@ -73,15 +59,11 @@ public class Matrix{
 	}
 	
 	public Matrix modify(MatrixProducer producer) {
-
 		int index = 0;
-
 		for (int row = 0; row < rows; ++row) {
 			for (int col = 0; col < cols; ++col) {
-
 				a[index] = producer.produce(a[index], row, col, index);
-
-				++index;
+				index++;
 			}
 		}
 
@@ -102,8 +84,6 @@ public class Matrix{
 
 	public Matrix multiply(Matrix m) {
 		Matrix result = new Matrix(rows, m.cols);
-
-		assert cols == m.rows : "Cannot multiply; wrong number of rows vs cols";
 
 		for (int row = 0; row < result.rows; row++) {
 			for (int n = 0; n < cols; n++) {
@@ -204,13 +184,6 @@ public class Matrix{
 		return result;
 	}
 	
-	public void set(int row, int col, double value) {
-		a[row * cols + col] = value;
-	}
-	
-	public double get(int row, int col) {
-		return a[row * cols + col];
-	}
 	
 	public Matrix addIncrement(int row, int col, double increment) {
 		
@@ -225,11 +198,27 @@ public class Matrix{
 		return result;
 	}
 
+	public int getRows() {
+		return rows;
+	}
+	
+	public int getCols() {
+		return cols;
+	}
+
 	public double getByIndex(int index) {
 		return a[index];
 	}
 
 	public double[] get() {
 		return a;
+	}
+
+	public void set(int row, int col, double value) {
+		a[row * cols + col] = value;
+	}
+	
+	public double get(int row, int col) {
+		return a[row * cols + col];
 	}
 }

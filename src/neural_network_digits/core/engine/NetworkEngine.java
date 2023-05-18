@@ -56,7 +56,6 @@ public NeuralNetworkResult runForwards(Matrix input) {
 			var error = weightErrors.get(i);
 			var input = weightInputs.get(i);
 			
-			assert weight.getCols() == input.getRows();
 			
 			var weightAdjust = error.multiply(input.transpose());
 			var biasAdjust = error.averageColumn();
