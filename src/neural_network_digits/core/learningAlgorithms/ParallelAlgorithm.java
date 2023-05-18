@@ -103,7 +103,7 @@ public class ParallelAlgorithm {
 			
 			batchTasks.add(executor.submit(()->executeBatch(metaData, batchData, trainingMode)));
 		}
-		String message = "";
+		String message = "\n";
 		if (trainingMode) {
 			message+= "While training ";
 		} else {

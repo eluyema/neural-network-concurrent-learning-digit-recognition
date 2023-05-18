@@ -83,7 +83,7 @@ public class SequentialAlgorithm {
 				System.out.print("|");
 			}
 		}
-		String message = "";
+		String message = "\n";
 		if (trainingMode) {
 			message+= "While training ";
 		} else {
