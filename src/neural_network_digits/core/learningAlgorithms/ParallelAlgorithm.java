@@ -96,13 +96,21 @@ public class ParallelAlgorithm {
 		int batchesSize = metaData.getNumberBatches();
 		
 		ExecutorService executor = Executors.newFixedThreadPool(threads);
-		
+		int imagesCount = 0;
 		for (int i = 0; i < batchesSize; i++) {
+			imagesCount+=32;
 			ImageBatchData batchData = dataManager.readBatch();
 			
 			batchTasks.add(executor.submit(()->executeBatch(metaData, batchData, trainingMode)));
 		}
-		
+		String message = "";
+		if (trainingMode) {
+			message+= "While training ";
+		} else {
+			message+= "While examp test ";
+		}
+		message+= "was read " + imagesCount;
+		System.out.println("");
 		executor.shutdown();
 
 		return batchTasks;

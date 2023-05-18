@@ -72,7 +72,9 @@ public class SequentialAlgorithm {
 		ImageDataInfo imageDataInfo = dataManager.getImageDataInfo();
 		int batchesSize = imageDataInfo.getNumberBatches();
 		int processStep = batchesSize / 16;
+		int imagesCount = 0;
 		for (int index = 0; index < batchesSize; index++) {
+			imagesCount+= 32;
 			ImageBatchData batchData = dataManager.readBatch();
 			
 			batchTasks.add(executeBatch(imageDataInfo, batchData, trainingMode));
@@ -81,6 +83,14 @@ public class SequentialAlgorithm {
 				System.out.print("|");
 			}
 		}
+		String message = "";
+		if (trainingMode) {
+			message+= "While training ";
+		} else {
+			message+= "While examp test ";
+		}
+		message+= "was read " + imagesCount;
+		System.out.println("");
 
 		return batchTasks;
 	}
