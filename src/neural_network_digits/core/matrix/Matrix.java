@@ -1,11 +1,8 @@
 package neural_network_digits.core.matrix;
 
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Random;
 
-public class Matrix implements Serializable {
+public class Matrix{
 	private int rows;
 	private int cols;
 	
