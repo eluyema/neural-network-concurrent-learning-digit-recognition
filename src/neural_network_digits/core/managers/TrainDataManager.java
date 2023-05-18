@@ -144,10 +144,6 @@ public class TrainDataManager {
 
             int bytesRead = imageStream.read(imageData, 0, bytesToRead);
 
-            if (bytesRead != bytesToRead) {
-                throw new IllegalArgumentException("Couldn't read sufficient bytes from image data");
-            }
-
             double[] data = new double[bytesToRead];
             for (int i = 0; i < bytesToRead; i++) {
                 data[i] = (imageData[i] & 0xFF) / 256.0;
