@@ -90,7 +90,7 @@ public class SequentialAlgorithm {
 			message+= "While examp test ";
 		}
 		message+= "was read " + imagesCount;
-		System.out.println("");
+		System.out.println(message);
 
 		return batchTasks;
 	}

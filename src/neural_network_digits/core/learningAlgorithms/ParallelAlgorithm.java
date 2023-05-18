@@ -110,7 +110,7 @@ public class ParallelAlgorithm {
 			message+= "While examp test ";
 		}
 		message+= "was read " + imagesCount;
-		System.out.println("");
+		System.out.println(message);
 		executor.shutdown();
 
 		return batchTasks;
